@@ -37,7 +37,7 @@ RUN docker-php-ext-install \
   xsl \
   zip
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=1.2.0
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=1.8.3
 
 
 ENV APP_DIR "/src"
