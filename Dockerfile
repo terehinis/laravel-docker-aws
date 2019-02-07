@@ -1,5 +1,5 @@
 FROM php:7.3.1-fpm
-MAINTAINER Petter Kjelkenes <kjelkenes@gmail.com>
+MAINTAINER <sysoce@gmail.com>
 
 RUN apt-get update \
   && apt-get install -y \
