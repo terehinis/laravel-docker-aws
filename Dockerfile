@@ -13,7 +13,9 @@ RUN apt-get update \
     libxslt1-dev \
     python-pip \
     redis-tools \
-    supervisor
+    supervisor \
+    libzip-dev \
+    zip
 
 
 # AWS cli is nice to have on aws, think: PaaS.
@@ -25,11 +27,12 @@ RUN pip install --upgrade awsebcli
 RUN docker-php-ext-configure \
   gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
 
+RUN pecl install mcrypt-1.0.2
+RUN docker-php-ext-enable mcrypt
+
 RUN docker-php-ext-install \
   gd \
   intl \
-  mbstring \
-  mcrypt \
   pdo_mysql \
   xsl \
   zip
