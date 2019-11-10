@@ -37,6 +37,10 @@ RUN docker-php-ext-install \
   xsl \
   zip
 
+RUN apt-get update && apt-get install -y libmagickwand-dev --no-install-recommends && rm -rf /var/lib/apt/lists/*
+RUN printf "\n" | pecl install imagick
+RUN docker-php-ext-enable imagick
+
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=1.8.3
 
 
@@ -84,8 +88,6 @@ RUN mkdir -p /var/www
 WORKDIR /src
 
 RUN apt-get update && apt-get install -y gcc g++ unzip jq
-
-
 
 RUN mkdir -p /usr/src/php/ext/redis \
     && curl -L https://github.com/phpredis/phpredis/archive/$PHPREDIS_VERSION.tar.gz | tar xvz -C /usr/src/php/ext/redis --strip 1 \
