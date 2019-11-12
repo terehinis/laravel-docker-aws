@@ -107,8 +107,8 @@ rm /tmp/laravel-start-in-progress
 #   /usr/bin/supervisorctl start laravel-worker:*
 
 
-#   echo "Starting php-fpm"
-#   /usr/local/sbin/php-fpm
+   echo "Starting php-fpm"
+   /usr/local/sbin/php-fpm
 
 #else
 #    echo "ERROR: could not find /src/composer.lock in laravel php container.... Did you mount laravel root dir as a volume to /src? You should..."
