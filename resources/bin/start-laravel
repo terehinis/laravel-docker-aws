@@ -47,12 +47,12 @@ chown -R www-data:www-data /home/composer
 
 
 
-#echo "Running composer"
-#su -c "composer install --optimize-autoloader --prefer-dist" -s /bin/sh www-data
-#if [ ! -f /src/composer.lock ]; then
-#    echo "Could not find /src/composer.lock. Did you map Laravel root folder (containing composer.json) to docker container /src folder? Example: docker run .. -v /var/www/html/laravelproject:/src"
-#    exit 1
-#fi
+echo "Running composer"
+su -c "composer install --optimize-autoloader --prefer-dist" -s /bin/sh www-data
+if [ ! -f /src/composer.lock ]; then
+    echo "Could not find /src/composer.lock. Did you map Laravel root folder (containing composer.json) to docker container /src folder? Example: docker run .. -v /var/www/html/laravelproject:/src"
+    exit 1
+fi
 
 
 
