@@ -52,6 +52,7 @@ ADD www.conf /usr/local/etc/php-fpm.d/www.conf
 ADD supervisor/*conf /etc/supervisor/conf.d/
 
 ADD start.sh /var/www/start.sh
+RUN chmod +x /var/www/start.sh
 ENTRYPOINT /var/www/start.sh 
 
 
