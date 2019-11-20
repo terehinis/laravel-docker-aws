@@ -8,8 +8,7 @@ RUN apt-get update \
     supervisor cron \
     nginx wget vim bzip2 \
     gnupg2 apt-transport-https \
-    libpng-dev libxml2 libxml2-dev npm
-
+    libpng-dev libxml2 libxml2-dev npm mc
 RUN docker-php-ext-install exif
 
 
@@ -25,11 +24,13 @@ RUN docker-php-ext-install bcmath \
     && docker-php-ext-install pdo_mysql pcntl \
     && docker-php-ext-install zip mbstring gd xml
 
-RUN echo 'deb http://apt.newrelic.com/debian/ newrelic non-free' | tee /etc/apt/sources.list.d/newrelic.list
-RUN wget -O- https://download.newrelic.com/548C16BF.gpg | apt-key add -
-RUN apt-get update && apt-get install -y newrelic-php5
+#RUN echo 'deb http://apt.newrelic.com/debian/ newrelic non-free' | tee /etc/apt/sources.list.d/newrelic.list
+#RUN wget -O- https://download.newrelic.com/548C16BF.gpg | apt-key add -
+#RUN apt-get update && apt-get install -y newrelic-php5
 
-
+RUN apt-get update && apt-get install -y libmagickwand-dev --no-install-recommends && rm -rf /var/lib/apt/lists/*
+RUN printf "\n" | pecl install imagick
+RUN docker-php-ext-enable imagick
 
 RUN mkdir -p /var/www/html
 RUN mkdir -p /var/www/app
@@ -41,13 +42,13 @@ RUN export COMPOSER_CACHE_DIR=/var/www/html/composer-cache/; \
 
 #RUN composer install --no-dev --no-interaction --no-scripts --optimize-autoloader
 
-RUN apt install mc -y
+RUN apt-get update && apt-get install mc -y
 
 ADD www.conf /usr/local/etc/php-fpm.d/www.conf
-ADD php-newrelic.ini /usr/local/etc/php/conf.d/php-newrelic.ini
+#ADD php-newrelic.ini /usr/local/etc/php/conf.d/php-newrelic.ini
 
 #SUPRVISOR
-ADD supervisor/supervisord.conf /etc/supervisord.conf
+#ADD supervisor/supervisord.conf /etc/supervisord.conf
 ADD supervisor/*conf /etc/supervisor/conf.d/
 
 ADD start.sh /var/www/start.sh
