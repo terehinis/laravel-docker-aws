@@ -48,7 +48,7 @@ ADD www.conf /usr/local/etc/php-fpm.d/www.conf
 #ADD php-newrelic.ini /usr/local/etc/php/conf.d/php-newrelic.ini
 
 #SUPRVISOR
-#ADD supervisor/supervisord.conf /etc/supervisord.conf
+ADD supervisor/supervisord.conf /etc/supervisord.conf
 ADD supervisor/*conf /etc/supervisor/conf.d/
 
 ADD start.sh /var/www/start.sh
